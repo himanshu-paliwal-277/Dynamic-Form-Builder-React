@@ -14,7 +14,8 @@ function FormBuilder() {
     const newField = {
       id:  uuidv4(),  // Unique ID for the field
       type,          // Type of the field (text, number, etc.)
-      label: '',     // Initially an empty label
+      label: '', 
+      options: type === 'radio' || type === 'checkbox' ? [''] : [],  // Initialize options for radio/checkbox
     };
     setFields([...fields, newField]);
   };

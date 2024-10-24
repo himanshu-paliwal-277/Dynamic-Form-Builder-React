@@ -22,12 +22,22 @@ function FormSubmission() {
         {fields?.map((field, index) => (
           <div key={index} className="flex flex-col gap-3 py-8 overflow-hidden bg-white rounded-lg shadow-sm px-7">
             <label className="mb-2 text-lg">{field.label}</label>
-            {/* <Field field={field} /> */}
+            {field.type === "number" || field.type === "text" || field.type === "file" ? 
             <input
-                type={field.type}
-                className="w-full py-2 duration-100 border-b-2 outline-none focus:border-gray-500"
-                placeholder={"input " + field.type}
-              />
+              type={field.type}
+              className="w-full py-2 duration-100 border-b-2 outline-none focus:border-gray-500"
+              placeholder={"input " + field.type}
+            />
+            : 
+            <div>
+              {field.options.map((option, optionIndex) => (
+                <div key={optionIndex} className="mb-2">
+                  <input type={field.type} className="mr-4" />
+                  <label>{option || `Option ${optionIndex + 1}`}</label>
+                </div>
+              ))}
+            </div>
+          }
           </div>
         ))}
       </div>
