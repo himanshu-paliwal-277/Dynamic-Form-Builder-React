@@ -3,12 +3,33 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useNavigate } from 'react-router-dom';
 import store from '../state/store';
 import { v4 as uuidv4 } from 'uuid';  // For generating unique IDs
+import axios from 'axios';
 
 function FormBuilder() {
   const { fields, setFields } = store();
   const { formName, setFormName } = store();
   const { formDescription, setFormDescription } = store();
   const navigate = useNavigate();
+
+   // Function to save the form
+   const handleSaveForm = async () => {
+    const formData = {
+      formName: formName,
+      formDescription: formDescription,
+      fields: fields,
+    };
+    console.log(formData);
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/forms', formData);
+      alert('Form saved successfully!');
+      console.log(response.data);
+    }
+    catch (error) {
+      console.error('Error saving form:', error);
+      alert('Failed to save the form');
+    }
+  }
 
   function handleAddField(type) {
     const newField = {
@@ -50,24 +71,23 @@ function FormBuilder() {
           {/* Form Name Input */}
           <div className="">
             <input
+              className="w-full p-2 text-4xl font-semibold duration-200 outline-none focus:border-b-2 focus:border-green-500 focus:mb-5"
               type="text"
-              placeholder="Enter form name"
               value={formName}
               onChange={(e) => setFormName(e.target.value)}
-              className="w-full p-2 text-4xl font-semibold duration-200 outline-none focus:border-b-2 focus:border-green-500 focus:mb-5"
-              required
+              placeholder="Enter form name"
             />
           </div>
           
           {/* Form Description Input */}
           <div className="">
             <textarea
-              placeholder="Enter form description"
               value={formDescription}
               onChange={(e) => setFormDescription(e.target.value)}
               className="w-full p-2 border-b-[2px] border-gray-200 outline-none focus:mb-4 focus:border-b-2 focus:border-gray-500  duration-200"
               rows="1"
               style={{resize: "none"}}
+              placeholder="Enter form description"
             />
           </div>
         </div>
@@ -94,10 +114,20 @@ function FormBuilder() {
           </Droppable>
         </DragDropContext>
           
-        <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/preview')}>Preview</button>
-        <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/responses')}>Responses</button>
-        <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/submit')}>Submit</button>
-        <button onClick={() => console.log(fields)}>see</button>
+        <div className='flex gap-3'>
+          <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/preview')}>Preview</button>
+          <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/responses')}>Responses</button>
+          <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/submit')}>Submit</button>
+          <button onClick={() => console.log(fields)}>see</button>
+        </div>
+        
+        {/* Save Form Button */}
+        <button
+          onClick={handleSaveForm}
+          className="p-2 mt-4 text-white bg-green-500 rounded"
+        >
+          Save Form
+        </button>
       </div>
       <div className='flex flex-wrap justify-between px-[5%] rounded-t-xl border-2 border-b-gray-300 sticky bottom-0 py-6 z-10 bg-white mx-[5%]'>
           <button className='px-4 py-2 mx-3 text-white bg-blue-500 rounded-lg' onClick={() => handleAddField('text')}>Add Text Field</button>
