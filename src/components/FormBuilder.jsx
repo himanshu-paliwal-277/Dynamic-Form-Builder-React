@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import store from '../state/store';
 import { v4 as uuidv4 } from 'uuid';  // For generating unique IDs
 import axios from 'axios';
+import Navbar from './navbar';
 
 function FormBuilder() {
   const { fields, setFields } = store();
@@ -69,8 +70,8 @@ function FormBuilder() {
 
   return (
     <>
-      <div className="mx-[10%]">
-        <h1>Create your form</h1>
+      <Navbar />
+      <div className="mx-[10%] mt-8 mb-32">
         <div className='px-6 py-8 mb-4 bg-white border-t-[12px] border-green-500 mt-4 rounded-xl'>
           {/* Form Name Input */}
           <div className="">
@@ -126,10 +127,7 @@ function FormBuilder() {
         </div>
         
         {/* Save Form Button */}
-        <button
-          onClick={handleSaveForm}
-          className="p-2 mt-4 text-white bg-green-500 rounded"
-        >
+        <button onClick={handleSaveForm} className="p-2 mt-4 text-white bg-green-500 rounded">
           Save Form
         </button>
       </div>

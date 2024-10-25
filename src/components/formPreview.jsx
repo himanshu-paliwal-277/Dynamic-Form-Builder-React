@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import store from "../state/store";
 import { useParams } from 'react-router-dom';
+import Navbar from './navbar';
 
 function FormPreview() {
   const { id } = useParams(); // Get the form ID from the URL if available
@@ -34,8 +35,10 @@ function FormPreview() {
   const currentFields = formData ? formData.fields : fields;
 
   return (
-    <div className="mx-[20%] mb-20">
-      <h1 className="mb-3 text-3xl font-bold">Form Preview</h1>
+    <>
+    <Navbar />
+    <div className="mx-[20%] mt-8 mb-20">
+      {/* <h1 className="mb-3 text-3xl font-bold">Form Preview</h1> */}
       
       {/* Form Name and Description */}
       <div className="px-6 py-8 mb-4 bg-white border-t-[12px] border-green-500 mt-4 rounded-xl">
@@ -71,6 +74,7 @@ function FormPreview() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 
