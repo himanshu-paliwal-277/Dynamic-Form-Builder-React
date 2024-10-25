@@ -3,7 +3,6 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useNavigate } from 'react-router-dom';
 import store from '../state/store';
 import { v4 as uuidv4 } from 'uuid';  // For generating unique IDs
-import axios from 'axios';
 import Navbar from './navbar';
 
 function FormBuilder() {
@@ -11,30 +10,36 @@ function FormBuilder() {
   const { formName, setFormName } = store();
   const { formDescription, setFormDescription } = store();
   const navigate = useNavigate();
+  const createForm = store((state) => state.createForm);
 
    // Function to save the form
    const handleSaveForm = async () => {
-    const formData = {
-      formName: formName,
-      formDescription: formDescription,
-      fields: fields,
-    };
-    console.log(formData);
+    // const formData = {
+    //   formName: formName,
+    //   formDescription: formDescription,
+    //   fields: fields,
+    // };
+    // console.log(formData);
 
-    try {
-      const response = await axios.post('http://localhost:5000/api/forms', formData);
-      alert('Form saved successfully!');
-      console.log(response.data);
-      navigate('/');
-      setFormName('Untitled form');
+    // try {
+    //   const response = await axios.post('http://localhost:5000/api/forms', formData);
+    //   alert('Form saved successfully!');
+    //   console.log(response.data);
+    //   navigate('/');
+    //   setFormName('Untitled form');
+    //   setFormDescription('');
+    //   setFields([]);
+    // }
+    // catch (error) {
+    //   console.error('Error saving form:', error);
+    //   alert('Failed to save the form');
+    // }
+      await createForm(formName, formDescription, fields);
+      setFormName('');
       setFormDescription('');
       setFields([]);
+      navigate('/');
     }
-    catch (error) {
-      console.error('Error saving form:', error);
-      alert('Failed to save the form');
-    }
-  }
 
   function handleAddField(type) {
     const newField = {
@@ -121,8 +126,8 @@ function FormBuilder() {
           
         <div className='flex gap-3'>
           <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/preview')}>Preview</button>
-          <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/responses')}>Responses</button>
-          <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/submit')}>Submit</button>
+          {/* <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/responses')}>Responses</button> */}
+          {/* <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/submit')}>Submit</button> */}
           <button onClick={() => console.log(fields)}>see</button>
         </div>
         

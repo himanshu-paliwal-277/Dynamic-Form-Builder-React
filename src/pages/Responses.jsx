@@ -1,26 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import store from "../state/store";
 
 function Responses() {
   const { id } = useParams(); // Form ID
-  const [responses, setResponses] = useState([]);
+  // const [responses, setResponses] = useState([]);
+  const fetchResponses = store((state) => state.fetchResponses);
+  const responses = store((state) => state.responses);
 
   // Fetch responses for the form
   useEffect(() => {
-    const fetchResponses = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/forms/${id}/responses`
-        );
-        setResponses(response.data);
-      } catch (error) {
-        console.error("Error fetching responses:", error);
-      }
-    };
-
-    fetchResponses();
-  }, [id]);
+    // const fetchResponses = async () => {
+    //   try {
+    //     const response = await axios.get(
+    //       `http://localhost:5000/api/forms/${id}/responses`
+    //     );
+    //     setResponses(response.data);
+    //   } catch (error) {
+    //     console.error("Error fetching responses:", error);
+    //   }
+    // };
+    
+    // fetchResponses();
+    fetchResponses(id);
+  }, [id, fetchResponses]);
 
   return (
     <div className="mx-[10%] mt-8 flex flex-col">
