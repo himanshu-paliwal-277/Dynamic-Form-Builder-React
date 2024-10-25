@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import store from "../state/store";
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from './navbar';
 
 function FormPreview() {
   const { id } = useParams(); // Get the form ID from the URL if available
   // Local state to store form data when fetched from the backend
   const [formData, setFormData] = useState(null);
+  const navigate = useNavigate();
 
   // Data from the store (used if no ID is provided in URL)
   const { fields, formName, formDescription } = store();
@@ -37,6 +38,17 @@ function FormPreview() {
   return (
     <>
     <Navbar />
+    {id && 
+    <div>
+      <p>
+      Share this link: <Link to={`/fill/${id}`}>http://localhost:3000/fill/{id}</Link>
+    </p>
+    <button className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700' onClick={() => navigate(`/responses/${id}`)}>
+      Responses
+    </button>
+    </div>
+    }
+    
     <div className="mx-[20%] mt-8 mb-20">
       {/* <h1 className="mb-3 text-3xl font-bold">Form Preview</h1> */}
       

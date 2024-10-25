@@ -125,7 +125,7 @@ function HomePage() {
           <h1>Pages:</h1>
             <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/FormBuilder')}>FormBuilder</button>
             <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/preview')}>Preview</button>
-            <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/responses')}>Responses</button>
+            {/* <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/responses')}>Responses</button> */}
             <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/submit')}>Submit</button>
         </div>
     </>

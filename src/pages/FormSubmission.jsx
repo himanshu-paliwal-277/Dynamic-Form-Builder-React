@@ -18,7 +18,7 @@ function FormSubmission() {
         <h1 className="mb-2 text-4xl font-semibold">{formName || "Untitled Form"}</h1>
         <p>{formDescription}</p>
       </div>
-      <div className="flex flex-col gap-4 form-preview">
+      <div className="flex flex-col gap-4 ">
         {fields?.map((field, index) => (
           <div key={index} className="flex flex-col gap-3 py-8 overflow-hidden bg-white rounded-lg shadow-sm px-7">
             <label className="mb-2 text-lg">{field.label}</label>
