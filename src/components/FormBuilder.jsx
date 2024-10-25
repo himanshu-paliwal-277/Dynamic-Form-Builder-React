@@ -24,6 +24,10 @@ function FormBuilder() {
       const response = await axios.post('http://localhost:5000/api/forms', formData);
       alert('Form saved successfully!');
       console.log(response.data);
+      navigate('/');
+      setFormName('Untitled form');
+      setFormDescription('');
+      setFields([]);
     }
     catch (error) {
       console.error('Error saving form:', error);
