@@ -5,7 +5,6 @@ import FormPreview from "./components/formPreview";
 import FillForm from "./components/FillForm";
 import Responses from "./pages/Responses";
 import LoginPage from "./pages/LoginPages";
-import LogoutButton from "./components/LogoutButton";
 import SignUpPage from "./pages/SignUpPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -25,10 +24,13 @@ function App() {
         <Route path="/fill/:id" element={<FillForm />} />
         <Route path="/responses/:id" element={<ProtectedRoute><Responses /></ProtectedRoute>} />
       </Routes>
-      {/* Add logout button on top or navbar */}
-      <LogoutButton />
     </>
   );
 }
 
 export default App;
+        {/* Protected route for form preview with id parameter */}
+
+        {/* Form fill route with id parameter */}
+
+        {/* Form responses route with id parameter */}

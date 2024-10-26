@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import store from "../state/store";
+import Navbar from "../components/navbar";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 function Responses() {
   const { id } = useParams(); // Form ID
@@ -26,6 +30,11 @@ function Responses() {
   }, [id, fetchResponses]);
 
   return (
+    <>
+    <Navbar />
+    <button className="absolute left-0 mt-6 mx-[5%] text=lg font-semibold hover:scale-110 active:scale-100" onClick={() => window.history.back()} type="button">
+    <FontAwesomeIcon className="text-2xl" icon={faArrowLeft} />
+    </button>
     <div className="mx-[10%] mt-8 flex flex-col">
       <h1 className="px-3 py-4 text-xl font-semibold bg-white rounded-lg">
         Responses
@@ -59,6 +68,7 @@ function Responses() {
         )}
       </div>
     </div>
+    </>
   );
 }
 

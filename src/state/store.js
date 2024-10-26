@@ -17,10 +17,10 @@ const store = create((set) => ({
 login: async (email, password) => {
   try {
     const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-    const { userId, token } = response.data; // Only receive userId and token
+    const { userId, token, username } = response.data; // Only receive userId and token
     localStorage.setItem('token', token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    set({ user: { id: userId }, token }); // Store userId in user object
+    set({ user: { id: userId, username:username }, token }); // Store userId in user object
     alert('Login successful');
   } catch (error) {
     console.error('Login error:', error);
@@ -54,7 +54,7 @@ login: async (email, password) => {
   // Fetch User Forms
   fetchUserForms: async () => {
     try {
-      const response = await axios.get('/api/forms');
+      const response = await axios.get('http://localhost:5000/api/forms');
       set({ forms: response.data });
     } catch (error) {
       console.error('Error fetching forms:', error);
@@ -64,7 +64,7 @@ login: async (email, password) => {
   // Create Form Action
   createForm: async (formName, formDescription, fields) => {
     try {
-      const response = await axios.post('/api/forms', { formName, formDescription, fields });
+      const response = await axios.post('http://localhost:5000/api/forms', { formName, formDescription, fields });
       set((state) => ({ forms: [...state.forms, response.data] }));
       alert('Form created successfully');
     } catch (error) {
@@ -78,7 +78,7 @@ login: async (email, password) => {
   // Fetch Responses for a Form
   fetchResponses: async (formId) => {
     try {
-      const response = await axios.get(`/api/forms/${formId}/responses`);
+      const response = await axios.get(`http://localhost:5000/api/forms/${formId}/responses`);
       set({ responses: response.data });
     } catch (error) {
       console.error('Error fetching responses:', error);

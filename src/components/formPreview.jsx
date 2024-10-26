@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import store from "../state/store";
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from './navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function FormPreview() {
   const { id } = useParams(); // Get the form ID from the URL if available
@@ -35,20 +37,19 @@ function FormPreview() {
   const currentFormDescription = formData ? formData.formDescription : formDescription;
   const currentFields = formData ? formData.fields : fields;
 
+  function handleCopy() {
+    const link = `http://localhost:5173/fill/${id}`;
+    navigator.clipboard.writeText(link)
+    .then(() => alert('Link copied to clipboard!'))
+    .catch(error => console.error('Error copying link:', error));    
+  }
+
   return (
     <>
     <Navbar />
-    {id && 
-    <div>
-      <p>
-      Share this link: <Link to={`/fill/${id}`}>http://localhost:3000/fill/{id}</Link>
-    </p>
-    <button className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700' onClick={() => navigate(`/responses/${id}`)}>
-      Responses
+    <button className="hover:scale-110 active:scale-100 absolute left-0 mt-6 mx-[5%] text=lg font-semibold" onClick={() => window.history.back()} type="button">
+    <FontAwesomeIcon className="text-2xl " icon={faArrowLeft} />
     </button>
-    </div>
-    }
-    
     <div className="mx-[20%] mt-8 mb-20">
       {/* <h1 className="mb-3 text-3xl font-bold">Form Preview</h1> */}
       
@@ -86,6 +87,18 @@ function FormPreview() {
         ))}
       </div>
     </div>
+    {id && 
+    <div className='sticky bottom-0 flex justify-between px-8 py-4 bg-white border-t-2 '>
+      <div className='flex items-center gap-4'>
+        <h1 className='text-xl font-semibold'>Link:</h1>
+      <input className='px-1 py-1 border-b-2 outline-none w-52 ' type="text" value={`http://localhost:5173/fill/${id}`} />
+      <button className='px-4 py-2 ml-4 font-bold text-gray-500 border-[2px] rounded hover:bg-gray-100 active:bg-gray-200 ' onClick={handleCopy}>Copy</button>
+    </div>
+    <button className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700' onClick={() => navigate(`/responses/${id}`)}>
+        Responses
+      </button>
+    </div>
+    }
     </>
   );
 }

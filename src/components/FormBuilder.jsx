@@ -123,18 +123,13 @@ function FormBuilder() {
             )}
           </Droppable>
         </DragDropContext>
-          
-        <div className='flex gap-3'>
-          <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/preview')}>Preview</button>
-          {/* <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/responses')}>Responses</button> */}
-          {/* <button className='px-3 py-1 bg-gray-300' onClick={() => navigate('/submit')}>Submit</button> */}
-          <button onClick={() => console.log(fields)}>see</button>
-        </div>
         
-        {/* Save Form Button */}
-        <button onClick={handleSaveForm} className="p-2 mt-4 text-white bg-green-500 rounded">
-          Save Form
-        </button>
+         <div className='flex gap-4 mt-4 '>
+            <button onClick={handleSaveForm} className="px-3 py-2 font-semibold text-white bg-green-500 rounded">
+              Save Form
+            </button>
+            <button className='px-4 py-2 text-gray-800 bg-gray-300 rounded hover:bg-opacity-80 active:bg-opacity-100' onClick={() => navigate('/preview')}>Preview</button>
+          </div>
       </div>
       <div className='flex flex-wrap justify-between px-[5%] rounded-t-xl border-2 border-b-gray-300 sticky bottom-0 py-6 z-10 bg-white mx-[5%]'>
           <button className='px-4 py-2 mx-3 text-white bg-blue-500 rounded-lg' onClick={() => handleAddField('text')}>Add Text Field</button>

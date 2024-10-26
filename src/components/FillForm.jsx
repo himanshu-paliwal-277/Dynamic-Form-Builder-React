@@ -11,8 +11,8 @@ function FillForm() {
   useEffect(() => {
     const fetchForm = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/forms/${id}`);
-        setForm(response.data);
+        const res = await axios.get(`http://localhost:5000/api/forms/${id}`);
+        setForm(res.data);
       } catch (error) {
         console.error('Error fetching form:', error);
       }
