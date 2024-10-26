@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import form_icon from '../assets/form-icon.png'
 import store from '../state/store';
 import Navbar from '../components/navbar';
+import { ContactInformationForm } from '../components/PreBuildForms/ContactInformationForm';
 
 function HomePage() {
   const [forms, setForms] = useState([]);
@@ -35,30 +36,7 @@ function HomePage() {
     setFormName('Contact Information');
     setFormDescription('');
     setFields([
-      {
-        id: "ce99b85a-6af7-4f75-96e6-19e7f06e2771",
-        label: 'Name',
-        type: 'text',
-        options: []
-      },
-      {
-        id: "ce99b85a-6af7-4f75-96e6-19e7f06e2772",
-        label: 'Email',
-        type: 'text',
-        options: []
-      },
-      {
-        id: "ce99b85a-6af7-4f75-96e6-19e7f06e2773",
-        label: "address",
-        type: 'text',
-        options: []
-      },
-      {
-        id: "ce99b85a-6af7-4f75-96e6-19e7f06e2774",
-        label: 'Phone',
-        type: 'number',
-        options: []
-      }
+      ...ContactInformationForm
     ])
     navigate('/formBuilder');
   }
@@ -125,6 +103,9 @@ function HomePage() {
             </ul>
           )}
         </div>
+        <footer className='py-6 text-center text-white bg-black'>
+          <p>&copy; {new Date().getFullYear()} all rights reserved by <a href="https://github.com/himanshu-paliwal-277" target="_blank" className='text-blue-300 hover:underline'>Himanshu Paliwal</a>.</p>
+        </footer>
     </>
   );
 };

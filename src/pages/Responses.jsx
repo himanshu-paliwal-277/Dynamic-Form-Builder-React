@@ -14,18 +14,6 @@ function Responses() {
 
   // Fetch responses for the form
   useEffect(() => {
-    // const fetchResponses = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //       `http://localhost:5000/api/forms/${id}/responses`
-    //     );
-    //     setResponses(response.data);
-    //   } catch (error) {
-    //     console.error("Error fetching responses:", error);
-    //   }
-    // };
-    
-    // fetchResponses();
     fetchResponses(id);
   }, [id, fetchResponses]);
 

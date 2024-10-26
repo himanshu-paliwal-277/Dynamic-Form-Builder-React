@@ -9,7 +9,7 @@ function Field({ field, handleLabelChange, handleDeleteField }) {
   const { fields, setFields } = store();
   
   // Function to handle option change for radio/checkbox
-  const handleOptionChange = (fieldId, optionIndex, newOption) => {
+  function handleOptionChange(fieldId, optionIndex, newOption) {
     const updatedFields = fields.map((field) => {
       if (field.id === fieldId) {
         const updatedOptions = [...field.options];
@@ -22,7 +22,7 @@ function Field({ field, handleLabelChange, handleDeleteField }) {
   };
 
   // Function to add a new option to a radio/checkbox field
-  const handleAddOption = (fieldId) => {
+  function handleAddOption(fieldId) {
     const updatedFields = fields.map((field) => {
       if (field.id === fieldId) {
         return { ...field, options: [...field.options, ''] };  // Add empty option
@@ -33,7 +33,7 @@ function Field({ field, handleLabelChange, handleDeleteField }) {
   };
 
   // Function to delete an option from a radio/checkbox field
-  const handleDeleteOption = (fieldId, optionIndex) => {
+  function handleDeleteOption(fieldId, optionIndex) {
     const updatedFields = fields.map((field) => {
       if (field.id === fieldId) {
         const updatedOptions = field.options.filter((_, index) => index !== optionIndex);

@@ -2,7 +2,8 @@ import Field from './Field';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useNavigate } from 'react-router-dom';
 import store from '../state/store';
-import { v4 as uuidv4 } from 'uuid';  // For generating unique IDs
+// For generating unique IDs
+import { v4 as uuidv4 } from 'uuid';  
 import Navbar from './navbar';
 
 function FormBuilder() {
@@ -14,26 +15,6 @@ function FormBuilder() {
 
    // Function to save the form
    const handleSaveForm = async () => {
-    // const formData = {
-    //   formName: formName,
-    //   formDescription: formDescription,
-    //   fields: fields,
-    // };
-    // console.log(formData);
-
-    // try {
-    //   const response = await axios.post('http://localhost:5000/api/forms', formData);
-    //   alert('Form saved successfully!');
-    //   console.log(response.data);
-    //   navigate('/');
-    //   setFormName('Untitled form');
-    //   setFormDescription('');
-    //   setFields([]);
-    // }
-    // catch (error) {
-    //   console.error('Error saving form:', error);
-    //   alert('Failed to save the form');
-    // }
       await createForm(formName, formDescription, fields);
       setFormName('');
       setFormDescription('');

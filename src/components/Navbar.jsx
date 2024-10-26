@@ -4,11 +4,13 @@ import store from "../state/store";
 import LogoutButton from "./LogoutButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 
 function Navbar() {
   const { user } = store();
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
   function togglePopup() {
     setShowPopup(!showPopup);
   }
@@ -21,14 +23,15 @@ function Navbar() {
         </div>
         <div className="">
           <div
-            onClick={() => togglePopup()}
-            className={`w-12 h-12 bg-gray-200 rounded-full flex justify-center items-center font-bold cursor-pointer`}
+            onClick={() => {user ? togglePopup() : navigate("/login")}}
+            className={`w-12 h-12 ${ user ? "bg-gray-200" : ""} rounded-full flex justify-center items-center font-bold cursor-pointer`}
             title={user?.username}
           >
+            {user === null && <button className="px-4 py-2 font-semibold border-2 rounded hover:bg-gray-100 active:bg-gray-50">Login</button>}
             {user?.username && user.username.split(" ").length >= 2
               ? user.username.split(" ")[0][0] + user.username.split(" ")[1][0]
               : // Fallback content, like "NA" or any placeholder you prefer
-                "NA"}
+                ""}
           </div>
           <div className={`flex flex-col items-center absolute top-24 right-8 bg-white py-6 px-8 shadow-xl rounded-lg  ${showPopup ? "block" : "hidden"}`}>
           <FontAwesomeIcon className="absolute text-sm scale-125 cursor-pointer opacity-30 hover:opacity-70 top-5 right-5" onClick={togglePopup} icon={faXmark} />
@@ -38,7 +41,8 @@ function Navbar() {
               : // Fallback content, like "NA" or any placeholder you prefer
                 "NA"}
             </div>
-            <h1 className="my-2 text-xl">{user ? "Hi, " + user?.username.split(" ")[0] + "!" : "NA"}</h1>
+            <h1 className="mt-2 mb-1 text-xl font-semibold">{user ? "Hi, " + user?.username.split(" ")[0] + "!" : "NA"}</h1>
+            <p className="mb-2">{user ? user?.userEmail : "NA"}</p>
             <LogoutButton />
           </div>
         </div>

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import MyLoader from './MyLoader/MyLoader';
 
 function FillForm() {
   const { id } = useParams(); // Get the form ID from the URL
   const [form, setForm] = useState(null);
   const [response, setResponse] = useState({}); // Store the user's responses
+  const navigate = useNavigate();
 
   // Fetch the form data by ID
   useEffect(() => {
@@ -31,14 +33,15 @@ function FillForm() {
     e.preventDefault();
     try {
       await axios.post(`http://localhost:5000/api/forms/${id}/responses`, response);
-      alert('Form submitted successfully!');
+      // alert('Form submitted successfully!');
+      navigate('/formSubmitted');
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Failed to submit the form');
     }
   };
 
-  if (!form) return <p>Loading...</p>;
+  if (!form) return <MyLoader />;
 
   return (
     <div className="mx-[20%] mb-20">
@@ -77,7 +80,9 @@ function FillForm() {
           </div>
         ))}
 
-        <button className="px-6 font-semibold py-2 mt-4 text-white bg-[#298904] rounded hover:scale-105 active:scale-100 duration-200" type="submit">Submit</button>
+        <div>
+          <button className="px-6 font-semibold py-2 mt-4 text-white bg-[#298904] rounded hover:scale-105 active:scale-100 duration-200" type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );

@@ -7,6 +7,7 @@ import Responses from "./pages/Responses";
 import LoginPage from "./pages/LoginPages";
 import SignUpPage from "./pages/SignUpPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import FormSubmitted from "./pages/FormSubmitted";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/preview/:id" element={<ProtectedRoute><FormPreview /></ProtectedRoute>} />
         <Route path="/fill/:id" element={<FillForm />} />
         <Route path="/responses/:id" element={<ProtectedRoute><Responses /></ProtectedRoute>} />
+        <Route path="/formSubmitted" element={<FormSubmitted />} />
       </Routes>
     </>
   );

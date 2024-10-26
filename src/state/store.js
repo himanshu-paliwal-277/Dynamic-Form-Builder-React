@@ -17,14 +17,16 @@ const store = create((set) => ({
 login: async (email, password) => {
   try {
     const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-    const { userId, token, username } = response.data; // Only receive userId and token
+    const { userId, token, username, userEmail } = response.data; // Only receive userId and token
     localStorage.setItem('token', token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    set({ user: { id: userId, username:username }, token }); // Store userId in user object
+    set({ user: { id: userId, username:username, userEmail:userEmail }, token }); // Store userId in user object
     alert('Login successful');
+    return true;
   } catch (error) {
     console.error('Login error:', error);
     alert('Failed to login');
+    return false;
   }
 },
 
