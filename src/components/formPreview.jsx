@@ -38,7 +38,7 @@ function FormPreview() {
   const currentFields = formData ? formData.fields : fields;
 
   function handleCopy() {
-    const link = `https://dynamic-form-builder-react.vercel.app/fill/${id}`;
+    const link = `https://dynamic-form-builder-react-js.netlify.app/fill/${id}`;
     navigator.clipboard.writeText(link)
     .then(() => alert('Link copied to clipboard!'))
     .catch(error => console.error('Error copying link:', error));    
@@ -90,7 +90,7 @@ function FormPreview() {
     <div className='sticky bottom-0 flex justify-between px-8 py-4 bg-white border-t-2 '>
       <div className='flex items-center gap-4'>
         <h1 className='text-xl font-semibold'>Link:</h1>
-      <input className='px-1 py-1 border-b-2 outline-none w-52 ' type="text" value={`https://dynamic-form-builder-react.vercel.app/fill/${id}`} />
+      <input className='px-1 py-1 border-b-2 outline-none w-52 ' type="text" value={`https://dynamic-form-builder-react-js.netlify.app/fill/${id}`} />
       <button className='px-4 py-2 ml-4 font-bold text-gray-500 border-[2px] rounded hover:bg-gray-100 active:bg-gray-200 ' onClick={handleCopy}>Copy</button>
     </div>
     <button className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700' onClick={() => navigate(`/responses/${id}`)}>
