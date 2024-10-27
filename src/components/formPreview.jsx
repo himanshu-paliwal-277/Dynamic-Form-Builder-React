@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import store from "../state/store";
 import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from './navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import axiosInstance from '../helpers/axiosInstance';
 
 function FormPreview() {
   const { id } = useParams(); // Get the form ID from the URL if available
@@ -21,7 +21,7 @@ function FormPreview() {
     const fetchForm = async () => {
       if (id) { // Only fetch if there's an ID in the URL
         try {
-          const response = await axios.get(`http://localhost:5000/api/forms/${id}`);
+          const response = await axiosInstance.get(`/api/forms/${id}`);
           setFormData(response.data); // Set fetched form data
         } catch (error) {
           console.error('Error fetching form:', error);

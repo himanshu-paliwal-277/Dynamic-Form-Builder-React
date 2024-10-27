@@ -1,5 +1,6 @@
 import axios from "axios";
 import { create } from "zustand";
+import axiosInstance from "../helpers/axiosInstance";
 
 const store = create((set) => ({
   fields: [],
@@ -10,15 +11,17 @@ const store = create((set) => ({
   setFormDescription: (newDescription) => set(() => ({ formDescription: newDescription })),
 
   // Authentication State
-  user: null,
+  user: JSON.parse(localStorage.getItem('user')) || null,
   token: localStorage.getItem('token') || null,
 
   // Simplified login action in Zustand
 login: async (email, password) => {
   try {
-    const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+    const response = await axiosInstance.post('/api/auth/login', { email, password });
     const { userId, token, username, userEmail } = response.data; // Only receive userId and token
     localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify({ id: userId, username, userEmail }));
+      
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     set({ user: { id: userId, username:username, userEmail:userEmail }, token }); // Store userId in user object
     alert('Login successful');
@@ -34,7 +37,7 @@ login: async (email, password) => {
   // Register Action
   register: async (username, email, password) => {
     try {
-      await axios.post('http://localhost:5000/api/auth/register', { username, email, password });
+      await axiosInstance.post('/api/auth/register', { username, email, password });
       alert('Registration successful, please log in');
     } catch (error) {
       console.error('Registration error:', error);
@@ -45,6 +48,7 @@ login: async (email, password) => {
   // Logout Action
   logout: () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     delete axios.defaults.headers.common['Authorization'];
     set({ user: null, token: null });
   },
@@ -56,7 +60,7 @@ login: async (email, password) => {
   // Fetch User Forms
   fetchUserForms: async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/forms');
+      const response = await axiosInstance.get('/api/forms');
       set({ forms: response.data });
     } catch (error) {
       console.error('Error fetching forms:', error);
@@ -66,7 +70,7 @@ login: async (email, password) => {
   // Create Form Action
   createForm: async (formName, formDescription, fields) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/forms', { formName, formDescription, fields });
+      const response = await axiosInstance.post('/api/forms', { formName, formDescription, fields });
       set((state) => ({ forms: [...state.forms, response.data] }));
       alert('Form created successfully');
     } catch (error) {
@@ -80,12 +84,27 @@ login: async (email, password) => {
   // Fetch Responses for a Form
   fetchResponses: async (formId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/forms/${formId}/responses`);
+      const response = await axiosInstance.get(`/api/forms/${formId}/responses`);
       set({ responses: response.data });
     } catch (error) {
       console.error('Error fetching responses:', error);
     }
-  }
+  },
+
+  // Delete form
+  deleteForm: async (formId) => {
+    try {
+      await axiosInstance.delete(`/api/forms/${formId}`);
+      set((state) => ({
+        forms: state.forms.filter((form) => form._id !== formId),
+      }));
+      alert('Form deleted successfully');
+    } catch (error) {
+      console.error('Error deleting form:', error);
+      alert('Failed to delete form');
+    }
+  },
+
 }));
 
 export default store;

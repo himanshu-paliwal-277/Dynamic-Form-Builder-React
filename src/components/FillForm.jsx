@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 import MyLoader from './MyLoader/MyLoader';
+import axiosInstance from '../helpers/axiosInstance';
 
 function FillForm() {
   const { id } = useParams(); // Get the form ID from the URL
@@ -13,7 +13,7 @@ function FillForm() {
   useEffect(() => {
     const fetchForm = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/forms/${id}`);
+        const res = await axiosInstance.get(`/api/forms/${id}`);
         setForm(res.data);
       } catch (error) {
         console.error('Error fetching form:', error);
@@ -32,9 +32,9 @@ function FillForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/api/forms/${id}/responses`, response);
+      await axiosInstance.post(`/api/forms/${id}/responses`, response);
       // alert('Form submitted successfully!');
-      navigate('/formSubmitted');
+      navigate('/formSubmitted/' + form.formName);
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Failed to submit the form');
@@ -70,7 +70,7 @@ function FillForm() {
                       name={field.label}
                       className="mr-4" 
                       onChange={() => handleChange(field.label, option)}
-                      required
+                      // required
                     />
                     <label>{option}</label>
                   </div>

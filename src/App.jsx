@@ -24,7 +24,7 @@ function App() {
         <Route path="/preview/:id" element={<ProtectedRoute><FormPreview /></ProtectedRoute>} />
         <Route path="/fill/:id" element={<FillForm />} />
         <Route path="/responses/:id" element={<ProtectedRoute><Responses /></ProtectedRoute>} />
-        <Route path="/formSubmitted" element={<FormSubmitted />} />
+        <Route path="/formSubmitted/:formName" element={<FormSubmitted />} />
       </Routes>
     </>
   );
