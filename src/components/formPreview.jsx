@@ -38,7 +38,7 @@ function FormPreview() {
   const currentFields = formData ? formData.fields : fields;
 
   function handleCopy() {
-    const link = `http://localhost:5173/fill/${id}`;
+    const link = `https://dynamic-form-builder-react.vercel.app/fill/${id}`;
     navigator.clipboard.writeText(link)
     .then(() => alert('Link copied to clipboard!'))
     .catch(error => console.error('Error copying link:', error));    

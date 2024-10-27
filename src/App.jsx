@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPages";
 import SignUpPage from "./pages/SignUpPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import FormSubmitted from "./pages/FormSubmitted";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -20,11 +21,12 @@ function App() {
         {/* Protected Routes */}
         <Route path="/formBuilder" element={<ProtectedRoute><FormBuilder /></ProtectedRoute>} />
         <Route path="/preview/" element={<FormPreview />} />
-        {/* <Route path="/preview/:id" element={<FormPreview />} /> */}
         <Route path="/preview/:id" element={<ProtectedRoute><FormPreview /></ProtectedRoute>} />
         <Route path="/fill/:id" element={<FillForm />} />
         <Route path="/responses/:id" element={<ProtectedRoute><Responses /></ProtectedRoute>} />
         <Route path="/formSubmitted/:formName" element={<FormSubmitted />} />
+        {/* Catch-All NotFound Route */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
