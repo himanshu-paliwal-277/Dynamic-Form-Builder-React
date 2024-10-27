@@ -51,7 +51,6 @@ function FormPreview() {
     <FontAwesomeIcon className="text-2xl " icon={faArrowLeft} />
     </button>
     <div className="mx-[20%] mt-8 mb-20">
-      {/* <h1 className="mb-3 text-3xl font-bold">Form Preview</h1> */}
       
       {/* Form Name and Description */}
       <div className="px-6 py-8 mb-4 bg-white border-t-[12px] border-green-500 mt-4 rounded-xl">
@@ -91,7 +90,7 @@ function FormPreview() {
     <div className='sticky bottom-0 flex justify-between px-8 py-4 bg-white border-t-2 '>
       <div className='flex items-center gap-4'>
         <h1 className='text-xl font-semibold'>Link:</h1>
-      <input className='px-1 py-1 border-b-2 outline-none w-52 ' type="text" value={`http://localhost:5173/fill/${id}`} />
+      <input className='px-1 py-1 border-b-2 outline-none w-52 ' type="text" value={`https://dynamic-form-builder-react.vercel.app/fill/${id}`} />
       <button className='px-4 py-2 ml-4 font-bold text-gray-500 border-[2px] rounded hover:bg-gray-100 active:bg-gray-200 ' onClick={handleCopy}>Copy</button>
     </div>
     <button className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700' onClick={() => navigate(`/responses/${id}`)}>
