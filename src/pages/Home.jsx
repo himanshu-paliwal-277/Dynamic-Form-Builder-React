@@ -28,7 +28,6 @@ function HomePage() {
   return (
     <>
         <Navbar />
-        {/* <h1>Home Page</h1> */}
         <div className='px-[10%] pt-5 pb-8 flex flex-col gap-5 bg-gray-100 bg-opacity-50'>
           <h1 className='text-2xl'>Create New Form</h1>
           <div className='flex gap-5'>
@@ -59,7 +58,6 @@ function HomePage() {
             </div>
           </div>
         </div>
-        {/* Saved Forms */}
         <SavedForms />
         <Footer />
     </>
