@@ -39,6 +39,7 @@ function UserProfile() {
         className={`flex flex-col items-center absolute top-24 right-8 bg-white py-6 px-8 shadow-xl rounded-lg  ${
           showPopup ? "block" : "hidden"
         }`}
+        style={user ? { display: "block" } : { display: "none" }}
       >
         <FontAwesomeIcon
           className="absolute text-sm scale-125 cursor-pointer opacity-30 hover:opacity-70 top-5 right-5"
