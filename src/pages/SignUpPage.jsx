@@ -19,13 +19,13 @@ function SignUpPage() {
 
   return (
     <div className="flex items-center justify-center w-full h-screen bg-gray-50">
-      <div className="w-[450px]">
+      <div className="sm:w-[450px] w-[310px]">
         <form
-          className="flex flex-col w-full gap-6 p-10 bg-white border-2 border-gray-200 rounded-lg shadow-md"
+          className="flex flex-col w-full gap-4 p-6 bg-white border-2 border-gray-200 rounded-lg shadow-md sm:p-10 sm:gap-6"
           onSubmit={handleSignUp}
         >
           <div className="mb-6">
-            <h1 className="mb-2 text-4xl font-semibold text-center">Welcome</h1>
+            <h1 className="mb-2 text-3xl font-semibold text-center sm:text-4xl">Welcome</h1>
           </div>
           <TextField
             className=""

@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <>
-      <footer className="py-6 text-center text-white bg-black">
+      <footer className="py-3 text-xs text-center text-white bg-black sm:py-6 sm:text-base">
         <p>
           &copy; {new Date().getFullYear()} all rights reserved by{" "}
           <a

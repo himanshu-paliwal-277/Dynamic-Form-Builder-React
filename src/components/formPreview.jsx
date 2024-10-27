@@ -14,6 +14,7 @@ function FormPreview() {
   // Data from the store (used if no ID is provided in URL)
   const { fields, formName, formDescription } = store();
 
+  console.log(formName, formDescription, fields);
   // Use React Query to fetch form data
   const {
     data: formData,
@@ -41,6 +42,7 @@ function FormPreview() {
     : formDescription;
   const currentFields = formData ? formData.fields : fields;
 
+  console.log(currentFormName, currentFormDescription, currentFields);
   function handleCopy() {
     const link = `https://dynamic-form-builder-react-js.netlify.app/fill/${id}`;
     navigator.clipboard
@@ -59,18 +61,18 @@ function FormPreview() {
       )}
       {error && <p>Error: {error.message}</p>}
       <button
-        className="hover:scale-110 sticky active:scale-100 top-28 left-0 mt-6 mx-[5%] text=lg font-semibold"
+        className="sm:hover:scale-110 sticky sm:active:scale-100 sm:top-28 top-[86px] left-0 sm:mt-6 sm:mx-[5%] mx-[3%] sm:scale-100 scale-75 bg-gray-50 rounded-full w-14 h-14 flex justify-center items-center"
         onClick={() => window.history.back()}
         type="button"
       >
         <FontAwesomeIcon className="text-2xl " icon={faArrowLeft} />
       </button>
-      {isSuccess && (
+      {(id ? isSuccess : true) && (
         <div>
-          <div className="mx-[20%] mt-8 mb-20">
+          <div className="sm:mx-[20%] mx-[5%] sm:mt-8 mb-20">
             {/* Form Name and Description */}
             <div className="px-6 py-8 mb-4 bg-white border-t-[12px] border-green-500 mt-4 rounded-xl">
-              <h1 className="mb-2 text-4xl font-semibold">
+              <h1 className="mb-2 text-2xl font-semibold sm:text-4xl">
                 {currentFormName || "Untitled Form"}
               </h1>
               <p>{currentFormDescription}</p>
@@ -110,23 +112,23 @@ function FormPreview() {
             </div>
           </div>
           {id && (
-            <div className="sticky bottom-0 flex justify-between px-8 py-4 bg-white border-t-2 ">
-              <div className="flex items-center gap-4">
-                <h1 className="text-xl font-semibold">Link:</h1>
+            <div className="sticky bottom-0 flex justify-between px-3 py-4 bg-white border-t-2 sm:px-8 ">
+              <div className="flex items-center sm:gap-4 ">
+                <h1 className="text-sm font-semibold sm:text-xl">Link:</h1>
                 <input
-                  className="px-1 py-1 border-b-2 outline-none w-52 "
+                  className="w-20 px-1 py-1 text-sm border-b-2 outline-none sm:w-52 sm:text-md"
                   type="text"
                   value={`https://dynamic-form-builder-react-js.netlify.app/fill/${id}`}
                 />
                 <button
-                  className="px-4 py-2 ml-4 font-bold text-gray-500 border-[2px] rounded hover:bg-gray-100 active:bg-gray-200 "
+                  className="sm:px-4 sm:py-2 px-2 py-1 ml-2 sm:ml-4 sm:font-bold text-gray-500 border-[2px] rounded hover:bg-gray-100 active:bg-gray-200 sm:text-md text-sm"
                   onClick={handleCopy}
                 >
                   Copy
                 </button>
               </div>
               <button
-                className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                className="px-2 py-1 text-sm text-white bg-blue-500 rounded sm:px-4 sm:py-2 sm:font-bold hover:bg-blue-700 sm:text-md"
                 onClick={() => navigate(`/responses/${id}`)}
               >
                 Responses

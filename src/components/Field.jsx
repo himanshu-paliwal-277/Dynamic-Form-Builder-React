@@ -46,7 +46,7 @@ function Field({ field, handleLabelChange, handleDeleteField }) {
   
   return (
     <div className="relative flex flex-col gap-3 py-10 overflow-hidden bg-white rounded-lg shadow-sm px-7 group">
-      <div className='absolute top-0 flex justify-center pt-2' style={{ width: 'calc(100% - 34px)'}}>
+      <div className='absolute top-0 flex justify-center pt-2 scale-90 sm:scale-100' style={{ width: 'calc(100% - 42px)'}}>
         <img className='w-5 h-5 duration-200 rotate-90 opacity-0 group-hover:opacity-30' src={dragAndDrop} alt="drag and drop image" />
       </div>
       {/* Input for setting the label */}
@@ -55,7 +55,7 @@ function Field({ field, handleLabelChange, handleDeleteField }) {
         placeholder="Enter label"
         value={field.label}
         onChange={(e) => handleLabelChange(field.id, e.target.value)}
-        className="w-full p-2 mb-2 text-xl duration-200 outline-none focus:bg-gray-50 focus:px-4 focus:py-6 focus:border-b-2 focus:border-gray-500"
+        className="w-full p-2 text-lg duration-100 outline-none sm:duration-200 sm:mb-2 sm:text-xl focus:bg-gray-50 focus:sm:px-4 focus:px-3 focus:py-3 focus:sm:py-6 focus:border-b-2 focus:border-gray-500"
         required
       />
 

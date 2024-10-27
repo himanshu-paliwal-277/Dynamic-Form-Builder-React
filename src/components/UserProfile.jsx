@@ -25,7 +25,7 @@ function UserProfile() {
         title={user?.username}
       >
         {user === null && (
-          <button className="px-4 py-2 font-semibold border-2 rounded hover:bg-gray-100 active:bg-gray-50">
+          <button className="px-3 py-1 mr-3 font-semibold border-2 rounded sm:py-2 sm:px-4 hover:bg-gray-100 active:bg-gray-50">
             Login
           </button>
         )}
@@ -45,16 +45,16 @@ function UserProfile() {
           onClick={togglePopup}
           icon={faXmark}
         />
-        <div className="flex items-center justify-center w-20 h-20 text-xl font-bold bg-gray-200 rounded-full">
+        <div className="flex items-center justify-center w-16 h-16 text-lg font-bold bg-gray-200 rounded-full sm:w-20 sm:h-20 sm:text-xl">
           {user?.username && user?.username.split(" ").length >= 2
             ? user?.username.split(" ")[0][0] + user?.username.split(" ")[1][0]
             : // Fallback content, like "NA" or any placeholder you prefer
               user?.username[0][0].toUpperCase()}
         </div>
-        <h1 className="mt-2 mb-1 text-xl font-semibold">
+        <h1 className="mt-2 mb-1 font-semibold sm:text-xl">
           {user ? "Hi, " + user?.username.split(" ")[0] + "!" : "NA"}
         </h1>
-        <p className="mb-2">{user ? user?.userEmail : "NA"}</p>
+        <p className="mb-2 text-sm sm:text-md">{user ? user?.userEmail : "NA"}</p>
         <LogoutButton />
       </div>
     </>

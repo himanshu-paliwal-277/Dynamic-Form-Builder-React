@@ -50,16 +50,16 @@ function FillForm() {
   );
 
   return (
-    <div className="mx-[20%] mb-20">
+    <div className="sm:mx-[20%] mx-[5%] mb-20">
       <div className="px-6 py-8 mb-4 bg-white border-t-[12px] border-green-500 mt-4 rounded-xl">
-        <h1 className='mb-2 text-4xl font-semibold'>{form.formName}</h1>
+        <h1 className='mb-2 text-2xl font-semibold sm:text-4xl'>{form.formName}</h1>
         <p>{form.formDescription}</p>
       </div>
 
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-4 text-sm sm:text-md" onSubmit={handleSubmit}>
         {form.fields.map((field, index) => (
           <div key={index} className="flex flex-col gap-3 py-8 overflow-hidden bg-white rounded-lg shadow-sm px-7">
-            <label className="mb-2 text-lg">{field.label}</label>
+            <label className="mb-2 font-semibold text-md sm:text-lg">{field.label}</label>
             {field.type === 'text' || field.type === 'number' || field.type === 'file' ? (
               <input
                 className="w-full py-2 duration-100 border-b-2 outline-none focus:border-gray-500"

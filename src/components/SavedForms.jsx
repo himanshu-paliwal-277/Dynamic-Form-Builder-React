@@ -6,7 +6,6 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import axiosInstance from "../helpers/axiosInstance";
 import { useQuery, useQueryClient } from "react-query";
 import { SpinnerDotted } from "spinners-react";
-// import { useState } from "react";
 
 function SavedForms() {
   const { user, newFormSaved } = store();
@@ -39,7 +38,7 @@ function SavedForms() {
   if (isLoading) {
     return (
     <div className="flex items-center justify-center w-full h-44">
-      <SpinnerDotted size={80} thickness={160} color="#3A99D8" />
+      <SpinnerDotted size={70} thickness={140} color="#3A99D8" />
     </div>);
   }
 
@@ -60,13 +59,13 @@ function SavedForms() {
   };
 
   return (
-    <div className="w-full bg-white px-[10%] pt-4 pb-20">
-      <h1 className="mt-2 mb-8 text-2xl font-semibold">Saved Forms</h1>
+    <div className="w-full bg-white sm:px-[10%] px-[6%] pt-4 pb-20">
+      <h1 className="mt-2 mb-8 text-xl font-semibold sm:text-2xl">Saved Forms</h1>
 
       {forms.length === 0 ? (
         <p>No forms found. Create a new form!</p>
       ) : (
-        <ul className="grid grid-cols-3 gap-x-12 gap-y-6">
+        <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-12 gap-y-6">
           {forms.map((form) => (
             <li
               onClick={() => navigate(`/preview/${form._id}`)}
