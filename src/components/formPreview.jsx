@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import store from "../state/store";
 import { useNavigate, useParams } from 'react-router-dom';
-import Navbar from './navbar';
+import Navbar from './Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import axiosInstance from '../helpers/axiosInstance';

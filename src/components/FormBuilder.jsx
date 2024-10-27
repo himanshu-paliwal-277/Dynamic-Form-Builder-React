@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import store from '../state/store';
 // For generating unique IDs
 import { v4 as uuidv4 } from 'uuid';  
-import Navbar from './navbar';
+import Navbar from './Navbar';
 
 function FormBuilder() {
   const { fields, setFields } = store();

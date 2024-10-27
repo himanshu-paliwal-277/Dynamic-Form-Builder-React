@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import store from '../state/store';
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import { ContactInformationForm } from '../components/PreBuildForms/ContactInformationForm';
 import SavedForms from '../components/SavedForms';
 
