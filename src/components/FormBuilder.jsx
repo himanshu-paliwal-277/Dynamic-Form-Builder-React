@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 function FormBuilder() {
   const { fields, setFields } = store();
   const { formName, setFormName } = store();
+  const { newFormSaved, setNewFormSaved } = store();
   const { formDescription, setFormDescription } = store();
   const navigate = useNavigate();
   const createForm = store((state) => state.createForm);
@@ -20,6 +21,7 @@ function FormBuilder() {
       setFormDescription('');
       setFields([]);
       navigate('/');
+      setNewFormSaved(!newFormSaved);
     }
 
   function handleAddField(type) {

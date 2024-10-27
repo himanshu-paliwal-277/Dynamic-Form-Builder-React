@@ -6,6 +6,8 @@ const store = create((set) => ({
   fields: [],
   formName: "Untitled form",
   formDescription: "",
+  newFormSaved: false,
+  setNewFormSaved: (newFormSaved) => set(() => ({ newFormSaved })),
   setFields: (newFields) => set(() => ({ fields: newFields })),
   setFormName: (newName) => set(() => ({ formName: newName })),
   setFormDescription: (newDescription) => set(() => ({ formDescription: newDescription })),
@@ -80,16 +82,6 @@ login: async (email, password) => {
 
   // Form Responses State and Actions
   responses: [], // Stores responses for a specific form
-
-  // Fetch Responses for a Form
-  fetchResponses: async (formId) => {
-    try {
-      const response = await axiosInstance.get(`/api/forms/${formId}/responses`);
-      set({ responses: response.data });
-    } catch (error) {
-      console.error('Error fetching responses:', error);
-    }
-  },
 
   // Delete form
   deleteForm: async (formId) => {

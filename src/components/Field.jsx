@@ -56,6 +56,7 @@ function Field({ field, handleLabelChange, handleDeleteField }) {
         value={field.label}
         onChange={(e) => handleLabelChange(field.id, e.target.value)}
         className="w-full p-2 mb-2 text-xl duration-200 outline-none focus:bg-gray-50 focus:px-4 focus:py-6 focus:border-b-2 focus:border-gray-500"
+        required
       />
 
       {/* Render the field based on selected type */}

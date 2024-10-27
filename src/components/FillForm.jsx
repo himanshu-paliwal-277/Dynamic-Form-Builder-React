@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import MyLoader from './MyLoader/MyLoader';
 import axiosInstance from '../helpers/axiosInstance';
+import { SpinnerDotted } from 'spinners-react';
 
 function FillForm() {
   const { id } = useParams(); // Get the form ID from the URL
@@ -41,7 +41,13 @@ function FillForm() {
     }
   };
 
-  if (!form) return <MyLoader />;
+  if (!form) return (
+    <div>
+      <div className="flex items-center justify-center w-full h-screen">
+         <SpinnerDotted size={70} thickness={140} color="#3A99D8" />
+      </div>
+    </div>
+  );
 
   return (
     <div className="mx-[20%] mb-20">
