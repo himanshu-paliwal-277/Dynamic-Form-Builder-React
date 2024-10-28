@@ -61,7 +61,7 @@
 #### Form Responses
 ![Form Responses](./src/assets/Screenshots/desktop_responses.png)
 
-#### Mobile View
+### Mobile View
 
 #### Home Page
 ![Home Page](./src/assets/Screenshots/mobile_home.png)
