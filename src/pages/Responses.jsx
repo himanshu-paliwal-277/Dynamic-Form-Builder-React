@@ -22,7 +22,7 @@ function Responses() {
     <>
       <Navbar />
       <button
-        className="sm:hover:scale-110 sticky sm:active:scale-100 sm:top-28 top-[86px] left-0 sm:mt-6 sm:mx-[5%] mx-[3%] sm:scale-100 scale-75 bg-gray-50 rounded-full w-14 h-14 flex justify-center items-center mb-3"
+        className="sm:hover:scale-110 sticky sm:active:scale-100 sm:top-28 top-[86px] left-0 sm:mt-6 sm:mx-[5%] mx-[3%] sm:scale-100 scale-75 bg-gray-50 rounded-full w-14 h-14 flex justify-center items-center mb-3 sm:shadow-none shadow-lg"
         onClick={() => window.history.back()}
         type="button"
       >

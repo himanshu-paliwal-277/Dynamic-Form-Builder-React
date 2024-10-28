@@ -86,12 +86,12 @@ function Field({ field, handleLabelChange, handleDeleteField }) {
                 type="text"
                 value={option}
                 onChange={(e) => handleOptionChange(field.id, index, e.target.value)}
-                className="w-[90%] duration-75 p-2 outline-none  focus:border-b-2 focus:border-gray-500"
+                className="sm:w-[90%] duration-75 p-2 outline-none  focus:border-b-2 focus:border-gray-500"
                 placeholder={`Option ${index + 1}`}
               />
               {/* Delete Option */}
               <button onClick={() => handleDeleteOption(field.id, index)} className="ml-2 text-red-500">
-                <FontAwesomeIcon icon={faXmark} className='text-lg text-black opacity-50 hover:opacity-80' />
+                <FontAwesomeIcon icon={faXmark} className='text-black opacity-50 sm:text-lg hover:opacity-80' />
               </button>
             </div>
           ))}
@@ -112,12 +112,12 @@ function Field({ field, handleLabelChange, handleDeleteField }) {
                 type="text"
                 value={option}
                 onChange={(e) => handleOptionChange(field.id, index, e.target.value)}
-                className="w-[90%] duration-75 p-2 outline-none  focus:border-b-2 focus:border-gray-500"
+                className="sm:w-[90%] duration-75 p-2 outline-none  focus:border-b-2 focus:border-gray-500"
                 placeholder={`Option ${index + 1}`}
               />
               {/* Delete Option */}
               <button onClick={() => handleDeleteOption(field.id, index)} className="ml-2 text-red-500">
-                <FontAwesomeIcon icon={faXmark} className='text-lg text-black opacity-50 hover:opacity-80' />
+                <FontAwesomeIcon icon={faXmark} className='text-black opacity-50 sm:text-lg hover:opacity-80' />
               </button>
             </div>
           ))}

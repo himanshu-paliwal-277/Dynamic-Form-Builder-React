@@ -61,7 +61,7 @@ function FormPreview() {
       )}
       {error && <p>Error: {error.message}</p>}
       <button
-        className="sm:hover:scale-110 sticky sm:active:scale-100 sm:top-28 top-[86px] left-0 sm:mt-6 sm:mx-[5%] mx-[3%] sm:scale-100 scale-75 bg-gray-50 rounded-full w-14 h-14 flex justify-center items-center"
+        className="sm:hover:scale-110 sticky sm:active:scale-100 sm:top-28 top-[86px] left-0 sm:mt-6 sm:mx-[5%] mx-[3%] sm:scale-100 scale-75 bg-gray-50 rounded-full w-14 h-14 flex justify-center items-center sm:shadow-none shadow-lg"
         onClick={() => window.history.back()}
         type="button"
       >
