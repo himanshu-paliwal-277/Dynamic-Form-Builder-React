@@ -6,6 +6,7 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import axiosInstance from "../helpers/axiosInstance";
 import { useQuery, useQueryClient } from "react-query";
 import { SpinnerDotted } from "spinners-react";
+import { ToastContainer } from "react-toastify";
 
 function SavedForms() {
   const { user, newFormSaved } = store();
@@ -121,6 +122,7 @@ function SavedForms() {
           ))}
         </ul>
       )}
+      <ToastContainer  position="bottom-right" autoClose={1500} />
     </div>
   );
 }

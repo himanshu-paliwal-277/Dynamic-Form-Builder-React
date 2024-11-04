@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Navbar from './Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { ToastContainer } from 'react-toastify';
 
 
 function FormBuilder() {
@@ -20,11 +21,13 @@ function FormBuilder() {
    // Function to save the form
    const handleSaveForm = async () => {
       await createForm(formName, formDescription, fields);
-      setFormName('');
-      setFormDescription('');
-      setFields([]);
-      navigate('/');
-      setNewFormSaved(!newFormSaved);
+      setTimeout(() => {
+        navigate('/');
+        setFormName('');
+        setFormDescription('');
+        setFields([]);
+        setNewFormSaved(!newFormSaved);
+      }, 2000);
     }
 
   function handleAddField(type) {
@@ -131,6 +134,7 @@ function FormBuilder() {
           <button className='px-6 py-1 text-white bg-blue-500 rounded sm:rounded-lg sm:mx-3 sm:px-4 sm:py-2'  onClick={() => handleAddField('checkbox')}>Add Checkbox</button>
           <button className='px-6 py-1 text-white bg-blue-500 rounded sm:rounded-lg sm:mx-3 sm:px-4 sm:py-2' onClick={() => handleAddField('file')}>Add File Upload</button>
       </div>
+      <ToastContainer  position="bottom-right" autoClose={1500} />
     </>
   );
 };

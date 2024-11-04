@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import store from "../state/store";
 import { TextField } from "@mui/material";
 import PasswordInput from "../components/PasswordInput";
+import { ToastContainer } from "react-toastify";
 
 function SignUpPage() {
   const navigate = useNavigate();
@@ -14,7 +15,9 @@ function SignUpPage() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     await register(username, email, password);
-    navigate("/login");
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
   };
 
   return (
@@ -67,6 +70,7 @@ function SignUpPage() {
           </p>
         </div>
       </div>
+      <ToastContainer  position="bottom-right" autoClose={1500} />
     </div>
   );
 }

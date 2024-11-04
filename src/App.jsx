@@ -9,6 +9,7 @@ import SignUpPage from "./pages/SignUpPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import FormSubmitted from "./pages/FormSubmitted";
 import NotFound from "./pages/NotFound";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (

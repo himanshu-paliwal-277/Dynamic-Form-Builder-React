@@ -35,28 +35,33 @@ function UserProfile() {
           : // Fallback content, like "NA" or any placeholder you prefer
             user?.username[0][0].toUpperCase()}
       </div>
-      <div
-        className={`flex flex-col items-center absolute top-24 right-8 bg-white py-6 px-8 shadow-xl rounded-lg  ${
-          showPopup ? "block" : "hidden"
-        }`}
-      >
-        <FontAwesomeIcon
-          className="absolute text-sm scale-125 cursor-pointer opacity-30 hover:opacity-70 top-5 right-5"
-          onClick={togglePopup}
-          icon={faXmark}
-        />
-        <div className="flex items-center justify-center w-16 h-16 text-lg font-bold bg-gray-200 rounded-full sm:w-20 sm:h-20 sm:text-xl">
-          {user?.username && user?.username.split(" ").length >= 2
-            ? user?.username.split(" ")[0][0] + user?.username.split(" ")[1][0]
-            : // Fallback content, like "NA" or any placeholder you prefer
-              user?.username[0][0].toUpperCase()}
+      {user !== null && (
+        <div
+          className={`flex flex-col items-center absolute top-[90px] right-5 sm:top-24 sm:right-16 bg-white border-[1px] border-gray-600 py-6 px-8 shadow-xl rounded-lg  ${
+            showPopup ? "block" : "hidden"
+          }`}
+        >
+          <FontAwesomeIcon
+            className="absolute text-sm scale-125 cursor-pointer opacity-30 hover:opacity-70 top-5 right-5"
+            onClick={togglePopup}
+            icon={faXmark}
+          />
+          <div className="flex items-center justify-center w-16 h-16 text-lg font-bold bg-gray-200 rounded-full sm:w-20 sm:h-20 sm:text-xl">
+            {user?.username && user?.username.split(" ").length >= 2
+              ? user?.username.split(" ")[0][0] +
+                user?.username.split(" ")[1][0]
+              : // Fallback content, like "NA" or any placeholder you prefer
+                user?.username[0][0].toUpperCase()}
+          </div>
+          <h1 className="mt-2 mb-1 font-semibold sm:text-xl">
+            {user ? "Hi, " + user?.username.split(" ")[0] + "!" : "NA"}
+          </h1>
+          <p className="mb-2 text-sm sm:text-md">
+            {user ? user?.userEmail : "NA"}
+          </p>
+          <LogoutButton />
         </div>
-        <h1 className="mt-2 mb-1 font-semibold sm:text-xl">
-          {user ? "Hi, " + user?.username.split(" ")[0] + "!" : "NA"}
-        </h1>
-        <p className="mb-2 text-sm sm:text-md">{user ? user?.userEmail : "NA"}</p>
-        <LogoutButton />
-      </div>
+      )}
     </>
   );
 }

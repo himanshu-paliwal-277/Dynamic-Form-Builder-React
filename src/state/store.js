@@ -1,6 +1,7 @@
 import axios from "axios";
 import { create } from "zustand";
 import axiosInstance from "../helpers/axiosInstance";
+import { toast } from "react-toastify";
 
 const store = create((set) => ({
   fields: [],
@@ -26,11 +27,12 @@ login: async (email, password) => {
       
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     set({ user: { id: userId, username:username, userEmail:userEmail }, token }); // Store userId in user object
-    alert('Login successful');
+    toast.success('Login successful');
     return true;
   } catch (error) {
     console.error('Login error:', error);
-    alert('Failed to login');
+    const message = error.response.data.message || 'An error occurred';
+    toast.error(message);
     return false;
   }
 },
@@ -40,10 +42,11 @@ login: async (email, password) => {
   register: async (username, email, password) => {
     try {
       await axiosInstance.post('/api/auth/register', { username, email, password });
-      alert('Registration successful, please log in');
+      toast.success('Registration successful');
     } catch (error) {
       console.error('Registration error:', error);
-      alert('Failed to register');
+      const message = error.response.data.message || 'An error occurred';
+      toast.error(message);
     }
   },
 
@@ -74,9 +77,11 @@ login: async (email, password) => {
     try {
       const response = await axiosInstance.post('/api/forms', { formName, formDescription, fields });
       set((state) => ({ forms: [...state.forms, response.data] }));
-      alert('Form created successfully');
+      toast.success('Form created successfully');
     } catch (error) {
       console.error('Error creating form:', error);
+      const message = error.response.data.message || 'An error occurred';
+      toast.error(message);
     }
   },
 
@@ -90,10 +95,11 @@ login: async (email, password) => {
       set((state) => ({
         forms: state.forms.filter((form) => form._id !== formId),
       }));
-      alert('Form deleted successfully');
+      toast.success('Form deleted successfully');
     } catch (error) {
       console.error('Error deleting form:', error);
-      alert('Failed to delete form');
+      const message = error.response.data.message || 'An error occurred';
+      toast.error(message);
     }
   },
 
